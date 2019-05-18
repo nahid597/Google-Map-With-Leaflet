@@ -23,6 +23,8 @@ export class MapService {
   longitude: any = -0.09;
   watchLatitude: any = 51.505;
   watchLongitude: any = -0.09;
+  markerCheck: boolean = true;
+  marker = null;
 
  public getCurrentPositionAndViewMap(mapid: string)
   {
@@ -38,9 +40,11 @@ export class MapService {
           id: 'mapbox.streets',
           accessToken: apiToekn
       }).addTo(mymap)
-
+      
       this.getWatchPosition(mymap);
        
+    }, (error) => {
+      alert("please allow location service..");
     });
   }
 
@@ -51,8 +55,17 @@ export class MapService {
       this.watchLatitude = position.coords.latitude;
       this.watchLongitude = position.coords.longitude;
 
-      var marker = L.marker([this.watchLatitude, this.watchLongitude], {icon:this.redIcon.redIcon}).addTo(mymap);
-      marker.bindPopup("<b>Hello Nahid!</b><br>I want to work.").openPopup();
+      // show red marker
+      if(this.marker == null)
+      {
+        this.marker = L.marker([this.watchLatitude, this.watchLongitude], {icon:this.redIcon.redIcon}).addTo(mymap);
+        this.marker.bindPopup("<b>Hello Nahid!</b><br>I want to work.").openPopup();
+      }
+      else{
+       this.marker.setLatLng([this.watchLatitude, this.watchLongitude]).update();
+      }
+     }, (error) => {
+      alert("please allow location service..");
     });
   }
 
