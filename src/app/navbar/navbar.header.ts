@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Route } from '@angular/compiler/src/core';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
@@ -11,11 +9,8 @@ import { Router } from '@angular/router';
 
 export class NavbarHeader {
 
-    constructor(private router: Router){};
+    constructor(){};
 
     public isCollapsed = true;
 
-    homeButton(){
-        this.router.navigate(['/home']);
-    }
 }

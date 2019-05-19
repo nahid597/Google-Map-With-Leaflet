@@ -39,7 +39,7 @@ export class MapService {
           maxZoom: 18,
           id: 'mapbox.streets',
           accessToken: apiToekn
-      }).addTo(mymap)
+      }).addTo(mymap);
       
       this.getWatchPosition(mymap);
        
