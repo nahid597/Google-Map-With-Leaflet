@@ -1,19 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Worker = require('../models/worker.model');
+const operation = require('../operation/operation');
 
 
-router.get('/workers', function(req, res){
-    Worker.find(req.query)
-        .exec(function(err, workers){
-            if(err) 
-                res.status(404).json(err.errmsg);
-            else
-                res.status(200).json(workers);
-        });
+router.get('', function(req, res){
+    operation.findInf(res, Worker, req.query);
 });
 
-router.post('/workers', function(req, res){
+router.post('', function(req, res){
 
     var newWorker = new Worker();
 
@@ -22,22 +17,11 @@ router.post('/workers', function(req, res){
     newWorker.Password = req.body.Password;
     newWorker.Catagory = req.body.Catagory;
 
-    newWorker.save(function(err, worker){
-        if(err)
-            res.status(500).json(err.errmsg);
-        else
-            res.status(200).json('Inserted');
-    });
+    operation.insertData(res, newWorker);
 });
 
-router.delete('/workers', function(req, res){
-    Worker.remove(req.query, function(err){
-        if(err)
-            res.status(500).json(err.errmsg);
-
-        else 
-            res.status(200).json('deleted');
-    });
+router.delete('', function(req, res){
+    operation.deleteData(res, Worker, req.query);
 });
 
 
