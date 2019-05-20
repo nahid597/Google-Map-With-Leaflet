@@ -13,7 +13,7 @@ router.post('', function(req, res){
     var newWorker = new Worker();
 
     newWorker.Name = req.body.Name;
-    newWorker.Mobile = req.body.Mobile;
+    newWorker.Phone = req.body.Phone;
     newWorker.Password = req.body.Password;
     newWorker.Catagory = req.body.Catagory;
 
