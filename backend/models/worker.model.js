@@ -1,3 +1,5 @@
+/*Database schema for workers table*/
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -7,7 +9,7 @@ var workerSchema = new Schema({
         required: true
     },
 
-    Mobile:{
+    Phone:{
         type: String,
         required: true,
         unique: true,

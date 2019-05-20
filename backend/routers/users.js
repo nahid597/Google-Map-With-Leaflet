@@ -1,41 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const Worker = require('../models/user.model');
+const Users = require('../models/user.model');
+const operation = require('../operation/operation');
 
 
-router.get('/users', function(req, res){
-    Worker.find(req.query)
-        .exec(function(err, workers){
-            if(err) 
-                res.status(404).json(err.errmsg);
-            else
-                res.status(200).json(workers);
-        });
+router.get('', function(req, res){
+    operation.findInf(res, Users, req.query);
 });
 
-router.post('/users', function(req, res){
-    var newWorker = new Worker();
-    newWorker.Name = req.body.Name;
-    newWorker.Mobile = req.body.Mobile;
-    newWorker.Password = req.body.Password;
-    newWorker.save(function(err, worker){
-        if(err)
-            res.status(500).json(err.errmsg);
-        else 
-            res.status(200).json('Inserted');
-    });
+router.post('', function(req, res){
+
+    var newNewUsers = new Users();
+
+    newNewUsers.Name = req.body.Name;
+    newNewUsers.Phone = req.body.Phone;
+    newNewUsers.Password = req.body.Password;
+
+    operation.insertData(res, newNewUsers);
 });
 
-router.delete('/users', function(req, res){
-    Worker.remove(req.query, function(err){
-        if(err)
-            res.status(500).json(err.errmsg);
-
-        else 
-            res.status(200).json('deleted');
-    });
+router.delete('', function(req, res){
+    operation.deleteData(res, Users, req.query);
 });
-
-
 
 module.exports = router;
