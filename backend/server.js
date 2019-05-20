@@ -7,7 +7,12 @@ const app = require('./app')
 
 const server = express();
 
-var db = 'mongodb+srv://khayrul123:khayrul123@cluster0-6kqzz.mongodb.net/test?retryWrites=true/test';
+var db = 'mongodb+srv://khayrul1234:khayrul1234@cluster0-q6u9x.mongodb.net/test?retryWrites=true';
+var db0 = 'mongodb+srv://khayrul123:khayrul123@cluster0-6kqzz.mongodb.net/test?retryWrites=true';
+
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
 
 mongoose.connect(db, { useNewUrlParser: true });
