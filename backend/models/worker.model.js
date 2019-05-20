@@ -7,7 +7,7 @@ var workerSchema = new Schema({
         required: true
     },
 
-    Mobile:{
+    Phone:{
         type: String,
         required: true,
         unique: true,
