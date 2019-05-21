@@ -14,7 +14,7 @@ function findInf(res, model, query){
 function insertData(res, model){
     model.save(function(err){
         if(err)
-            res.status(500).json('Error');
+            res.status(500).json(err);
         else
             res.status(200).json('Inserted');
     });
