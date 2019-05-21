@@ -12,9 +12,8 @@ router.post('', function(req, res){
 
     var newNewUsers = new Users();
 
-    newNewUsers.Name = req.body.Name;
-    newNewUsers.Phone = req.body.Phone;
-    newNewUsers.Password = req.body.Password;
+    for(var key in req.body)
+        newNewUsers[key] = req.body[key];
 
     operation.insertData(res, newNewUsers);
 });
