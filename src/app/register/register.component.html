@@ -1,0 +1,100 @@
+
+<div class="register">
+  <div class="row">
+    <div class="col-md-3 register-left">
+        <h3>Welcome<br/>To The<br/>MyAdvisor App</h3>
+        <a routerLink="/login"><button >Login</button></a><br/>
+    </div>
+    <div class="col-md-9 register-right">
+      <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+        <button class="nav-link active" id="home-tab" data-toggle="tab" (click)="selectOption()" role="tab" aria-controls="home" aria-selected="true">Employee</button>
+
+        <button class="nav-link active" id="profile-tab" data-toggle="tab" (click)="selectAnotherOption()" role="tab" aria-controls="profile" aria-selected="false">User</button>
+      </ul>
+      <div *ngIf="check" class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h3 class="register-heading">Apply as a Employee</h3>
+          <form #f="ngForm" (ngSubmit)="save(f)"  [formGroup]="registrationForm" class="row register-form">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" [class.is-invalid]="username.Name.invalid && username.Name.touched" formControlName="Name" class="form-control" placeholder="Name *"/>
+                <small  [class.d-none]="username.Name.untouched || username.Name.valid" class="text-danger">
+                  Name is required
+                </small>
+              </div>
+              
+              <div class="form-group">
+                <input type="password" [class.is-invalid]="username.Password.invalid && username.Password.touched" formControlName="Password" class="form-control" placeholder="Password *"/>
+                <small  [class.d-none]="username.Password.untouched || username.Password.valid" class="text-danger">
+                  Password is required
+                </small>
+              </div>
+              
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" [class.is-invalid]="username.Phone.invalid && username.Phone.touched" formControlName="Phone"  class="form-control" placeholder="Your Phone *"/>
+                <small  [class.d-none]="username.Phone.untouched || username.Phone.valid" class="text-danger">
+                  Phone number is required
+                </small>
+              </div>
+
+              <div class="form-group">
+                <input type="password" [class.is-invalid]="username.confirmPassword.invalid && username.confirmPassword.touched" formControlName="confirmPassword" class="form-control"  placeholder="Confirm Password *"/>
+                <small  [class.d-none]="username.confirmPassword.untouched || username.confirmPassword.valid" class="text-danger">
+                  Password do not match
+                </small>
+              </div>
+
+              <button type="submit" class="btonRegister">Register</button>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <form *ngIf="!check" [formGroup]="registrationForm" class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <h3  class="register-heading">Apply as a User</h3>
+        <div class="row register-form">
+          <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" [class.is-invalid]="username.Name.invalid && username.Name.touched" formControlName="Name" class="form-control" placeholder="Name *"/>
+                <small  [class.d-none]="username.Name.untouched || username.Name.valid" class="text-danger">
+                  Name is required
+                </small>
+              </div>
+              
+              <div class="form-group">
+                <input type="password" [class.is-invalid]="username.Password.invalid && username.Password.touched" formControlName="Password" class="form-control" placeholder="Password *"/>
+                <small  [class.d-none]="username.Password.untouched || username.Password.valid" class="text-danger">
+                  Password is required
+                </small>
+              </div>
+              
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" [class.is-invalid]="username.Phone.invalid && username.Phone.touched" formControlName="Phone"  class="form-control" placeholder="Your Phone *"/>
+                <small  [class.d-none]="username.Phone.untouched || username.Phone.valid" class="text-danger">
+                  Phone number is required
+                </small>
+              </div>
+
+              <div class="form-group">
+                <input type="password" [class.is-invalid]="username.confirmPassword.invalid && username.confirmPassword.touched" formControlName="confirmPassword" class="form-control"  placeholder="Confirm Password *"/>
+                <small  [class.d-none]="username.confirmPassword.untouched || username.confirmPassword.valid" class="text-danger">
+                  Password do not match
+                </small>
+              </div>
+
+              
+              
+            </div>
+            <button type="submit" class="bttonRegister">Register</button>
+        </div>
+
+        
+      </form>
+    </div>
+  </div>
+</div>

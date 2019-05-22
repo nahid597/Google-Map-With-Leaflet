@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 
 export class NavbarHeader {
 
-    constructor(private router: Router){};
+    constructor(private router: Router) {}
 
     public isCollapsed = true;
 
-    homeButton(){
+    homeButton() {
         this.router.navigate(['/home']);
     }
 }
