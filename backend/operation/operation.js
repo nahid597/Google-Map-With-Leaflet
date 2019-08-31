@@ -1,9 +1,8 @@
-
 //Find data from a database
-function findInf(res, model, query){
+function findInf(res, model, query) {
     model.find(query)
-        .exec(function(err, data){
-            if(err) 
+        .exec(function(err, data) {
+            if (err)
                 res.status(404).json(err.errmsg);
             else
                 res.status(200).json(data);
@@ -11,9 +10,9 @@ function findInf(res, model, query){
 }
 
 //Insert into a database
-function insertData(res, model){
-    model.save(function(err){
-        if(err)
+function insertData(res, model) {
+    model.save(function(err) {
+        if (err)
             res.status(500).json(err);
         else
             res.status(200).json('Inserted');
@@ -21,14 +20,23 @@ function insertData(res, model){
 }
 
 //Delete data from database
-function deleteData(res, model, query){
-    model.remove(query, function(err){
-        if(err)
+function deleteData(res, model, query) {
+    model.remove(query, function(err) {
+        if (err)
             res.status(500).json(err.errmsg);
 
-        else 
+        else
             res.status(200).json('deleted');
     });
 }
 
-module.exports = {findInf, insertData, deleteData};
+function updateData(res, model, query, newData) {
+    model.findOneAndUpdate(query, newData, { upsert: true }, function(err, doc) {
+        if (err)
+            return res.send(500, { error: err });
+
+        return res.send("succesfully saved");
+    });
+}
+
+module.exports = { findInf, insertData, deleteData, updateData };
